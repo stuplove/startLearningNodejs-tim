@@ -5,7 +5,7 @@ exports = module.exports = init;
 
 function init(iDao) {
 	var controllers = {};
-	console.log('dao : ', controllers.dao);
+
 	controllers.dao = iDao;
 
 	controllers.all = all;
