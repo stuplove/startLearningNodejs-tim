@@ -1,22 +1,8 @@
 
 //database init
-//p1, or
-// var database = require('./database');
+var database = require('./database');
 
-//p2
-var Sequelize = require('sequelize');
-
-// 最後一個參數可以丟ＤＢ的 host, port 預設就是這個
-// var database = new Sequelize('db_zsl', 'moremote', 'moremote', {
-// 	host: "localhost",
-// 	port: 3306
-// });
-
-var database = new Sequelize('sequelize_db', 'moremote', 'moremote');
-//database init end
-
-
-//宣告ＤＢ
+//宣告 table
 var User = database.define('User', {
   username: Sequelize.STRING,
   birthday: Sequelize.DATE
@@ -26,39 +12,42 @@ var User = database.define('User', {
 // database.sync() -> CREATE TABLE IF NOT EXISTS
 // 新增
 database.sync().then(function() {
-  	return User.create({
-  		username: 'Roth',
-  		birthday: '12-20-1982'
-  	});
+  console.log('*insert ');
+  return User.create({
+		username: 'Roth',
+		birthday: '12-20-1982'
+	});
 
-// 查詢
+
 }).then(function() {
-  	return User.findAll();
+// 查詢所有
+  return User.findAll();
 
 }).then(function(list) {
-  	console.log('find all = ' + list.length);
+  	console.log('*find all = ' + list.length);
   	for (var i = 0; i < list.length; i++) {
   		console.log(list[i].dataValues);
   	}
 
 }).then(function() {
+// 查詢一筆（最新一筆）
   	return User.findOne();
 
-//修改
 }).then(function(data) {
-  	console.log('findOne = ' + data);
+  	console.log('*findOne = ' + data);
   	console.log(data.dataValues);
+
+//修改
   	data.updateAttributes({username : 'TimUpdate'});
   	return data;
 
-//刪除
+
 }).then(function(data) {
-  	console.log('findOne = ' + data);
+  	console.log('*updateAttributes after = ' + data);
   	console.log(data.dataValues);
-  	// User.destroy({where : {
-  	// 	id: data.dataValues.id
-  	// }});
-	data.destroy();
+
+//刪除
+    data.destroy();
 
 //全部刪除（或者刪除多筆也可以用這個方法）
 }).then(function() {
