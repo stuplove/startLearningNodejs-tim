@@ -1,0 +1,24 @@
+{
+  "name": "ex-sequelize-02-migrations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "help": "./node_modules/sequelize-cli/bin/sequelize",
+    "init": "./node_modules/sequelize-cli/bin/sequelize init",
+    "create-user": "./node_modules/sequelize-cli/bin/sequelize model:create --name Users --attributes name:string, phone:string,age:integer",
+    "create-task": "./node_modules/sequelize-cli/bin/sequelize model:create --name Tasks --attributes 'title:string, Contents:string'",
+    "migrate-test": "./node_modules/sequelize-cli/bin/sequelize --env test db:migrate",
+    "migrate": "./node_modules/sequelize-cli/bin/sequelize db:migrate",
+    "clean": "rm -r config models migrations",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.8.0",
+    "sequelize": "^3.5.1",
+    "sequelize-cli": "^1.7.4",
+    "sqlite3": "^3.0.9"
+  }
+}

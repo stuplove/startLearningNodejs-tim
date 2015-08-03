@@ -6,3 +6,9 @@ npm-debug.log
 
 # Code coverage
 coverage
+
+#cli create folder
+config
+migrations
+models
+*.sqlite
